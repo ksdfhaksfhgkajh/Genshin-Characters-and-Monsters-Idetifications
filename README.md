@@ -7,7 +7,7 @@ $ git clone https://github.com/ksdfhaksfhgkajh/Genshin-Characters-and-Monsters-I
 $ pip install -r requirements.txt
 $ python predict.py
 ```
-suportted Monster types:
+supported Monster types:
 slime, 
 hilichurl, 
 whopperflower, 
@@ -16,7 +16,7 @@ fatui,
 ruinguard, 
 geovishap, 
 
-suportted Character types:
+supported Character types:
 Ayaka, 
 Shogun, 
 Mona, 
