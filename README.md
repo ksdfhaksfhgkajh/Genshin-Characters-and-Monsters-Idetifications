@@ -1,4 +1,4 @@
-# Genshin-Characters-and-Monsters-Idetifications
+# Genshin-Characters-and-Monsters-Idetification
 Detecting characters and monsters in the game Genshin based on module YOLOX.
 
 How to run:
@@ -21,3 +21,6 @@ Ayaka,
 Shogun, 
 Mona, 
 Yaoyao, 
+
+![示例图片](img/demo.JPG)
+
