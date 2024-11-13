@@ -103,4 +103,3 @@ class Ui_MainWindow(object):
         self.shipin.setText(_translate("MainWindow", "视频检测"))
         self.shishi.setText(_translate("MainWindow", "共享屏幕检测"))
         self.tuichu.setText(_translate("MainWindow", "退出"))
-        self.label_2.setText(_translate("MainWindow", "原神人物检测系统1.0"))
