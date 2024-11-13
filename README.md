@@ -8,16 +8,16 @@ $ pip install -r requirements.txt
 $ python predict.py
 ```
 suportted Monster types:
-slime
-hilichurl
-whopperflower
-abyssmage
-fatui
-ruinguard
-geovishap
+slime, 
+hilichurl, 
+whopperflower, 
+abyssmage, 
+fatui, 
+ruinguard, 
+geovishap, 
 
 suportted Character types:
-Ayaka
-Shogun
-Mona
-Yaoyao
+Ayaka, 
+Shogun, 
+Mona, 
+Yaoyao, 
