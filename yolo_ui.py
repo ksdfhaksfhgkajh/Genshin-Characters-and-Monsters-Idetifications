@@ -104,4 +104,3 @@ class Ui_MainWindow(object):
         self.shishi.setText(_translate("MainWindow", "共享屏幕检测"))
         self.tuichu.setText(_translate("MainWindow", "退出"))
         self.label_2.setText(_translate("MainWindow", "原神人物检测系统1.0"))
-        self.label.setText(_translate("MainWindow", "制作人：纪以航 王象贤 傅岸峰 杜明宇"))
