@@ -16,7 +16,7 @@ fatui
 ruinguard
 geovishap
 
-suportted Character types
+suportted Character types:
 Ayaka
 Shogun
 Mona
