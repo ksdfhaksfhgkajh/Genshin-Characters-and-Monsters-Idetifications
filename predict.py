@@ -43,11 +43,15 @@ class DetailUI(Ui_MainWindow, QMainWindow):
         self.real_time_detection_button.clicked.connect(self.start_screen_detection)
         self.video_detection_button.clicked.connect(self.open_video_file)
         self.camera_detection_button.clicked.connect(self.open_camera_stream)
+        self.switch_model_button.clicked.connect(self.switch_model)
         self.exit_button.clicked.connect(self.close_application)
 
         # Redirect stdout and stderr to the log text browser
         sys.stdout = EmittingStr(textWritten=self.update_log_output)
         sys.stderr = EmittingStr(textWritten=self.update_log_output)
+
+        self.yolo = YOLO('best_logs/p_best_epoch_weights.pth', 'model_data/p_classes.txt')
+        print("loaded model is for pedestrian detection\n")
 
     def update_log_output(self, text):
         cursor = self.log_text_browser.textCursor()
@@ -109,7 +113,7 @@ class DetailUI(Ui_MainWindow, QMainWindow):
             # Convert to Image for YOLO
             frame = Image.fromarray(np.uint8(frame))
             # Detect objects
-            frame = np.array(yolo.detect_image(frame))
+            frame = np.array(self.yolo.detect_image(frame))
             # Convert back to BGR for OpenCV
             frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
@@ -133,7 +137,7 @@ class DetailUI(Ui_MainWindow, QMainWindow):
             return
 
         image = Image.open(img_name)
-        r_image = yolo.detect_image(image, crop=crop, count=count)
+        r_image = self.yolo.detect_image(image, crop=crop, count=count)
         # Temporary save detection result
         r_image.save('./imgs/predicted_img.jpg')
         display_img = './imgs/predicted_img.jpg'
@@ -162,7 +166,7 @@ class DetailUI(Ui_MainWindow, QMainWindow):
             # BGR->RGB
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame = Image.fromarray(np.uint8(frame))
-            frame = np.array(yolo.detect_image(frame))
+            frame = np.array(self.yolo.detect_image(frame))
             frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
             fps = (fps + (1. / (time.time() - t1))) / 2
@@ -191,7 +195,7 @@ class DetailUI(Ui_MainWindow, QMainWindow):
                 break
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame = Image.fromarray(np.uint8(frame))
-            frame = np.array(yolo.detect_image(frame))
+            frame = np.array(self.yolo.detect_image(frame))
             frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
 
             fps = (fps + (1. / (time.time() - t1))) / 2
@@ -205,25 +209,31 @@ class DetailUI(Ui_MainWindow, QMainWindow):
             cv2.waitKey(int(1000 / fps))
         cv2.destroyAllWindows()
 
+    def switch_model(self):
+        self.close_screen_detection_loop = True
+        self.close_video_detection_loop = True
+        self.close_camera_detection_loop = True
 
+        if self.yolo.model_path == 'best_logs/p_best_epoch_weights.pth':
+            print("switching to gen_model\n")
+            self.yolo = YOLO('best_logs/gen_best_epoch_weights.pth', 'model_data/gen_classes.txt')
+            print("_________done_________\n")
+            print("switched to gen_model\n")
+        elif self.yolo.model_path == 'best_logs/gen_best_epoch_weights.pth':
+            print("switching to p_model\n")
+            self.yolo = YOLO('best_logs/p_best_epoch_weights.pth', 'model_data/p_classes.txt')
+            print("_________done_________\n")
+            print("switched to p_model\n")
 
 
 if __name__ == "__main__":
-    yolo = YOLO()
+
 
     # Additional settings as per original code
     crop = False
     count = False
     video_path = 0
-    video_save_path = ""
-    video_fps = 25.0
-    test_interval = 100
-    fps_image_path = "imgs/street.jpg"
-    dir_origin_path = "imgs/"
-    dir_save_path = "img_out/"
-    heatmap_save_path = "model_data/heatmap_vision.png"
     simplify = True
-    onnx_save_path = "model_data/models.onnx"
 
     app = QApplication(sys.argv)
     ex = DetailUI()

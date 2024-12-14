@@ -19,8 +19,6 @@ from utils.utils_bbox import decode_outputs, non_max_suppression
 
 class YOLO(object):
     _defaults = {
-        "model_path": 'best_logs/best_epoch_weights.pth',
-        "classes_path": 'model_data/gen_classes.txt',
         # ---------------------------------------------------------------------#
         #   输入图片的大小，必须为32的倍数。
         # ---------------------------------------------------------------------#
@@ -59,13 +57,16 @@ class YOLO(object):
     # ---------------------------------------------------#
     #   初始化YOLO
     # ---------------------------------------------------#
-    def __init__(self, **kwargs):
+    def __init__(self, model_path, classes_path, **kwargs):
+        self.model_path = model_path
+        self.classes_path = classes_path
+
         self.__dict__.update(self._defaults)
         for name, value in kwargs.items():
             setattr(self, name, value)
             self._defaults[name] = value
 
-            # ---------------------------------------------------#
+        # ---------------------------------------------------#
         #   获得种类和先验框的数量
         # ---------------------------------------------------#
         self.class_names, self.num_classes = get_classes(self.classes_path)

@@ -45,6 +45,15 @@ class Ui_MainWindow(object):
         )
         self.video_detection_button.setObjectName("video_detection_button")
 
+        self.switch_model_button = QtWidgets.QPushButton(self.central_widget)
+        self.switch_model_button.setGeometry(QtCore.QRect(1170, 30, 191, 51))
+        self.switch_model_button.setStyleSheet(
+            "font: 18pt \"Microsoft YaHei UI\";\n"
+            "color: rgb(255, 255, 255);\n"
+            "background-color: rgb(200, 200, 0);"
+        )
+        self.switch_model_button.setObjectName("switch_model_button")
+
         self.exit_button = QtWidgets.QPushButton(self.central_widget)
         self.exit_button.setGeometry(QtCore.QRect(1170, 100, 191, 51))
         self.exit_button.setStyleSheet(
@@ -64,28 +73,26 @@ class Ui_MainWindow(object):
         self.log_text_browser = QtWidgets.QTextBrowser(self.central_widget)
         self.log_text_browser.setGeometry(QtCore.QRect(1160, 190, 361, 661))
         self.log_text_browser.setStyleSheet(
-            "background-color: rgba(255, 255, 255, 100);\n"
+            "background-color: rgba(100, 100, 100, 100);\n"
             "font: 18pt \"Microsoft YaHei UI\";"
         )
         self.log_text_browser.setObjectName("log_text_browser")
 
         self.background_list_widget = QtWidgets.QListWidget(self.central_widget)
         self.background_list_widget.setGeometry(QtCore.QRect(0, 0, 1601, 901))
-        self.background_list_widget.setStyleSheet("background-image: url(\"a3.jpg\")")
+        self.background_list_widget.setStyleSheet(
+            "background-color: rgba(100, 100, 100, 100);\n"
+            "font: 18pt \"Microsoft YaHei UI\";"
+        )
         self.background_list_widget.setObjectName("background_list_widget")
 
         self.title_label = QtWidgets.QLabel(self.central_widget)
-        self.title_label.setGeometry(QtCore.QRect(220, 10, 478, 81))
+        self.title_label.setGeometry(QtCore.QRect(220, 10, 605, 81))
         self.title_label.setStyleSheet(
             "font: 30pt \"华文琥珀\";\n"
             "background-color: rgba(255, 255, 255, 187);"
         )
         self.title_label.setObjectName("title_label")
-
-        self.subtitle_label = QtWidgets.QLabel(self.central_widget)
-        self.subtitle_label.setGeometry(QtCore.QRect(720, 20, 851, 71))
-        self.subtitle_label.setStyleSheet("font: 28pt \"华文琥珀\";")
-        self.subtitle_label.setObjectName("subtitle_label")
 
         # Adjust z-order to ensure correct stacking
         self.background_list_widget.raise_()
@@ -93,11 +100,11 @@ class Ui_MainWindow(object):
         self.camera_detection_button.raise_()
         self.video_detection_button.raise_()
         self.real_time_detection_button.raise_()
+        self.switch_model_button.raise_()
         self.result_frame.raise_()
         self.exit_button.raise_()
         self.log_text_browser.raise_()
         self.title_label.raise_()
-        self.subtitle_label.raise_()
 
         MainWindow.setCentralWidget(self.central_widget)
 
@@ -121,6 +128,6 @@ class Ui_MainWindow(object):
         self.camera_detection_button.setText(_translate("MainWindow", "摄像头检测"))
         self.video_detection_button.setText(_translate("MainWindow", "视频检测"))
         self.real_time_detection_button.setText(_translate("MainWindow", "共享屏幕检测"))
+        self.switch_model_button.setText(_translate("MainWindow", "切换模型"))
         self.exit_button.setText(_translate("MainWindow", "退出"))
-        self.title_label.setText(_translate("MainWindow", "原神人物检测系统1.0"))
-        self.subtitle_label.setText(_translate("MainWindow", ""))  # 若需要可添加字幕文字
+        self.title_label.setText(_translate("MainWindow", "基于YOLOX的人物检测系统"))
