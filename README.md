@@ -24,5 +24,5 @@ Shogun,
 Mona, 
 Yaoyao, 
 
-![示例图片](img/demo.jpg)
+![示例图片](imgs/demo.jpg)
 
