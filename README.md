@@ -6,7 +6,7 @@
 
 How to run:(python >= 3.10.4)
 ```bash    
-$ git clone https://github.com/ksdfhaksfhgkajh/Genshin-Characters-and-Monsters-Idetifications.git
+$ git clone -b course_dev https://github.com/ksdfhaksfhgkajh/Genshin-Characters-and-Monsters-Idetifications.git
 $ pip install -r requirements.txt
 $ python predict.py
 ```
