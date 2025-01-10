@@ -1,6 +1,8 @@
 # Pedestrain/Character Detection System Based on YoloX
 
-基于YOLOX的人物检查系统
+基于YOLOX的人物检测系统
+
+测试样例图片与视频位于`./img/`文件夹
 
 How to run:(python >= 3.10.4)
 ```bash    
